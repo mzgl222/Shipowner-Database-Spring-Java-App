@@ -16,7 +16,12 @@ Użyte technologie:
  * Java, JavaScript, HTML & CSS
  * Spring Framework, Tomcat Server, Maven
 
+## Baza danych
+Poniżej znajduje się model logiczny bazy danych zamodelowany z użyciem narzędzia Toad Data Modeler, na podstawie którego wygenerowany został kod SQL tworzący faktyczny projekt.
+<img src="zdj\Logiczny.png"/>
 
+## Wygląd aplikacji
+Poniższe zrzuty ekranu przedstawiają zarówno szeroką jak i wąską perspektywę użycia aplikacji.
 
 <img src="zdj\mainpage.png"/>
 <img src="zdj\LOGINBEZPRZESUWANIA.png"/>

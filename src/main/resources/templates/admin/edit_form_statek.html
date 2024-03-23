@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Edytuj statek</title>
+</head>
+<body>
+<div align="center">
+    <h1>Edytuj statek</h1>
+    <br/>
+    <form action="#" th:action="@{/update_statek}" th:object="${statek}" method="post">
+        <table border = "1" cellpadding = "10">
+            <tr>
+                <td>ID statku:</td>
+                <td><input type="text" th:field="*{id_statku}" readonly="readonly"></td>
+            </tr>
+            <tr>
+                <td>Nazwa:</td>
+                <td><input type="text" th:field="*{nazwa}"></td>
+            </tr>
+            <tr>
+                <td>Rok produkcji:</td>
+                <td><input type="text" th:field="*{rok_produkcji}"></td>
+            </tr>
+            <tr>
+                <td>Zasięg:</td>
+                <td><input type="text" th:field="*{zasieg}"></td>
+            </tr>
+            <tr>
+                <td>ID armatora:</td>
+                <td><input type="text" th:field="*{nr_armatora}"></td>
+            </tr>
+            <tr>
+                <td>ID modelu:</td>
+                <td><input type="text" th:field="*{id_modelu}"></td>
+            </tr>
+            <tr>
+                <td colspan="2"><button type="submit">Save</button></td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>

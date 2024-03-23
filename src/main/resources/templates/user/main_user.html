@@ -1,0 +1,187 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Main User Page</title>
+
+  <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+  <div class="container">
+    <a class="navbar-brand" href="/">BDBT Spring Boot Project - Part II</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+            aria-controls="navbarResponsive"
+            aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/index}">Home</a>
+        </li>
+
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Main
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" th:inline="text" style="color:lightskyblue;">Youuuu are logged in as <b
+                  style="text-transform:capitalize">[[${#httpServletRequest.remoteUser}]]</b></a>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="row">
+
+    <div class="col-md-10 mt-5">
+      <form method="post" th:action="@{/index}">
+        <div class="form-group">
+          <label style="font-size:30px" th:inline="text">Welcome <a
+                  style="color:lightskyblue; text-transform:capitalize"><b>[[${#httpServletRequest.remoteUser}]]</b></a>
+            to the main page!</label>
+          <div style="font-size:20px">If you want to log out, click "Logout" button under this text.</div>
+        </div>
+
+        <button class="btn btn-primary" type="submit" onclick="successfullyLogout()" value="Sign Out">Logout
+        </button>
+      </form>
+    </div>
+
+  </div>
+</div>
+<!-----------------------------------------------------TABELKA PORTY--------------------------------------------->
+<div align="center">
+  <h1>Zobacz dokąd pływamy!</h1>
+
+<!--  <a href="/new_port">Dodaj port</a>-->
+  <br/><br/>
+  <table border="1" cellpadding="10">
+
+    <thead>
+    <tr>
+      <th>ID portu</th>
+      <th>Nazwa</th>
+      <th>Miasto</th>
+      <th>Liczba miejsc</th>
+      <th>ID armatora</th>
+<!--      <th>Operacja</th>-->
+
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="port : ${listPort}">
+      <td th:text="${port.id_portu}">ID portu</td>
+      <td th:text="${port.nazwa_portu}">Nazwa</td>
+      <td th:text="${port.miasto}">Miasto</td>
+      <td th:text="${port.liczba_miejsc}">Liczba miejsc</td>
+      <td th:text="${port.nr_armatora}">ID armatora</td>
+<!--      <td>-->
+<!--        <a th:href="@{'/edit_port/' + ${port.id_portu}}">Edit</a>-->
+<!--        <a th:href="@{'/delete_port/' + ${port.id_portu}}">Delete</a>-->
+
+<!--      </td>-->
+    </tr>
+    </tbody>
+
+  </table>
+<!-----------------------------------------------------TABELKA STATKI----------------------------------------------->
+</div>
+<div align="center">
+  <h1>Zobacz czym pływamy!</h1>
+
+<!--  <a href="/new_statek">Dodaj statek</a>-->
+  <br/><br/>
+  <table border="1" cellpadding="10">
+
+    <thead>
+    <tr>
+      <th>ID statku</th>
+      <th>Nazwa</th>
+      <th>Rok produkcji</th>
+      <th>Zasięg</th>
+      <th>ID armatora</th>
+      <th>ID modelu</th>
+<!--      <th>Operacja</th>-->
+
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="statek : ${listStatek}">
+      <td th:text="${statek.id_statku}">ID statku</td>
+      <td th:text="${statek.nazwa}">Nazwa</td>
+      <td th:text="${statek.rok_produkcji}">Rok produkcji</td>
+      <td th:text="${statek.zasieg}">Zasieg</td>
+      <td th:text="${statek.nr_armatora}">ID armatora</td>
+      <td th:text="${statek.id_modelu}">ID modelu</td>
+<!--      <td>
+        <a th:href="@{'/edit_statek/' + ${statek.id_statku}}">Edit</a>
+        <a th:href="@{'/delete_statek/' + ${statek.id_statku}}">Delete</a>
+
+      </td>-->
+    </tr>
+    </tbody>
+
+  </table>
+
+</div>
+
+<!-------------------------------------------------Tabelka klienci-->
+<div align="center">
+  <h1>Widzisz błąd w swoich danych? Popraw go!</h1>
+
+<!--  <a href="/new_statek">Dodaj statek</a>-->
+  <br/><br/>
+  <table border="1" cellpadding="10">
+
+    <thead>
+    <tr>
+      <th>ID klienta</th>
+      <th>Email</th>
+      <th>Nr telefonu</th>
+      <th>ID armatora</th>
+      <th>ID adresu</th>
+      <th>Operacja</th>
+
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="klient : ${listKlient}">
+      <td th:text="${klient.id_klienta}">ID klienta</td>
+      <td th:text="${klient.email}">Email</td>
+      <td th:text="${klient.nr_telefonu}">Nr telefonu</td>
+      <td th:text="${klient.nr_armatora}">ID armatora</td>
+      <td th:text="${klient.nr_adresu}">ID adresu</td>
+
+      <td>
+        <a th:href="@{'/edit_klient/' + ${klient.id_klienta}}">Edit</a>
+<!--        <a th:href="@{'/delete_statek/' + ${statek.id_statku}}">Delete</a>-->
+
+      </td>
+    </tr>
+    </tbody>
+
+  </table>
+
+</div>
+
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/script.js}"></script>
+
+</body>
+</html>

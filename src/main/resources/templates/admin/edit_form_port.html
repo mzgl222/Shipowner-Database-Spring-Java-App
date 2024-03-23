@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Edytuj port</title>
+</head>
+<body>
+<div align="center">
+  <h1>Edytuj port</h1>
+  <br/>
+  <form action="#" th:action="@{/update_port}" th:object="${port}" method="post">
+    <table border = "1" cellpadding = "10">
+      <tr>
+        <td>ID portu:</td>
+        <td><input type="text" th:field="*{id_portu}" readonly="readonly"></td>
+      </tr>
+      <tr>
+        <td>Nazwa:</td>
+        <td><input type="text" th:field="*{nazwa_portu}"></td>
+      </tr>
+      <tr>
+        <td>Miasto:</td>
+        <td><input type="text" th:field="*{miasto}"></td>
+      </tr>
+      <tr>
+        <td>Liczba miejsc:</td>
+        <td><input type="text" th:field="*{liczba_miejsc}"></td>
+      </tr>
+      <tr>
+        <td>ID armatora:</td>
+        <td><input type="text" th:field="*{nr_armatora}"></td>
+      </tr>
+      <tr>
+        <td colspan="2"><button type="submit">Save</button></td>
+      </tr>
+    </table>
+  </form>
+</div>
+</body>
+</html>

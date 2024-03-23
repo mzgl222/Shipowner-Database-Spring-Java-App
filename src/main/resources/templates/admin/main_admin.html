@@ -1,0 +1,309 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Main Admin Page</title>
+
+  <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+  <div class="container">
+    <a class="navbar-brand" href="/">BDBT Spring Boot Project - Part II</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+            aria-controls="navbarResponsive"
+            aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/index}">Home</a>
+        </li>
+
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Main
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" th:inline="text" style="color:lightskyblue;">You are logged in as <b
+                  style="text-transform:capitalize">[[${#httpServletRequest.remoteUser}]]</b></a>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="row">
+
+    <div class="col-md-10 mt-5">
+      <form method="post" th:action="@{/index}">
+        <div class="form-group">
+          <label style="font-size:30px" th:inline="text">Welcome <a
+                  style="color:lightskyblue; text-transform:capitalize"><b>[[${#httpServletRequest.remoteUser}]]</b></a>
+            to the main page!</label>
+          <div style="font-size:20px">If you want to log out, click "Logout" button under this text.</div>
+        </div>
+<!--          <div><a href="/new_statek">Dodaj statek</a></div>-->
+
+        <button class="btn btn-primary" type="submit" onclick="successfullyLogout()" value="Sign Out">Logout
+        </button>
+      </form>
+    </div>
+
+  </div>
+</div>
+<!-------------------------------------------------Tabelka statki-->
+<div align="center">
+    <h1>Statki</h1>
+
+    <a href="/new_statek">Dodaj statek</a>
+    <br/><br/>
+    <table border="1" cellpadding="10">
+
+        <thead>
+        <tr>
+            <th>ID statku</th>
+            <th>Nazwa</th>
+            <th>Rok produkcji</th>
+            <th>Zasięg</th>
+            <th>ID armatora</th>
+            <th>ID modelu</th>
+            <th>Operacja</th>
+
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="statek : ${listStatek}">
+            <td th:text="${statek.id_statku}">ID statku</td>
+            <td th:text="${statek.nazwa}">Nazwa</td>
+            <td th:text="${statek.rok_produkcji}">Rok produkcji</td>
+            <td th:text="${statek.zasieg}">Zasieg</td>
+            <td th:text="${statek.nr_armatora}">ID armatora</td>
+            <td th:text="${statek.id_modelu}">ID modelu</td>
+            <td>
+                <a th:href="@{'/edit_statek/' + ${statek.id_statku}}">Edit</a>
+                <a th:href="@{'/delete_statek/' + ${statek.id_statku}}">Delete</a>
+
+            </td>
+        </tr>
+        </tbody>
+
+    </table>
+
+</div>
+<!--------------------------------------------------Tabelka Marki------------------------------------->
+<div align="center">
+    <h1>Marki</h1>
+
+    <a href="/new_marka">Dodaj markę</a>
+    <br/><br/>
+    <table border="1" cellpadding="10">
+
+        <thead>
+        <tr>
+            <th>ID marki</th>
+            <th>Nazwa</th>
+            <th>Operacja</th>
+
+
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="marka : ${listMarka}">
+            <td th:text="${marka.id_marki}">ID marki</td>
+            <td th:text="${marka.nazwa_marki}">Nazwa</td>
+            <td>
+                <a th:href="@{'/edit_marka/' + ${marka.id_marki}}">Edit</a>
+                <a th:href="@{'/delete_marka/' + ${marka.id_marki}}">Delete</a>
+
+            </td>
+        </tr>
+        </tbody>
+
+    </table>
+
+</div>
+<!--------------------------------------------------Tabelka modele------------------------------------->
+<div align="center">
+    <h1>Modele</h1>
+
+    <a href="/new_model">Dodaj model</a>
+    <br/><br/>
+    <table border="1" cellpadding="10">
+
+        <thead>
+        <tr>
+            <th>ID modelu</th>
+            <th>Nazwa</th>
+            <th>ID marki</th>
+            <th>Operacja</th>
+
+
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="model : ${listModel}">
+            <td th:text="${model.id_modelu}">Nazwa</td>
+            <td th:text="${model.nazwa}">Nazwa</td>
+
+            <td th:text="${model.nr_marki}">ID marki</td>
+            <td>
+                <a th:href="@{'/edit_model/' + ${model.id_modelu}}">Edit</a>
+                <a th:href="@{'/delete_model/' + ${model.id_modelu}}">Delete</a>
+
+            </td>
+        </tr>
+        </tbody>
+
+    </table>
+
+</div>
+<!-------------------------------------------------------------Tabelka porty-->
+<div align="center">
+    <h1>Porty</h1>
+
+    <a href="/new_port">Dodaj port</a>
+    <br/><br/>
+    <table border="1" cellpadding="10">
+
+        <thead>
+        <tr>
+            <th>ID portu</th>
+            <th>Nazwa</th>
+            <th>Miasto</th>
+            <th>Liczba miejsc</th>
+            <th>ID armatora</th>
+            <th>Operacja</th>
+
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="port : ${listPort}">
+            <td th:text="${port.id_portu}">ID portu</td>
+            <td th:text="${port.nazwa_portu}">Nazwa</td>
+            <td th:text="${port.miasto}">Miasto</td>
+            <td th:text="${port.liczba_miejsc}">Liczba miejsc</td>
+            <td th:text="${port.nr_armatora}">ID armatora</td>
+            <td>
+                <a th:href="@{'/edit_port/' + ${port.id_portu}}">Edit</a>
+                <a th:href="@{'/delete_port/' + ${port.id_portu}}">Delete</a>
+
+            </td>
+        </tr>
+        </tbody>
+
+    </table>
+
+</div>
+<!-------------------------------------------------------------Tabelka pracownicy------------------------------>
+<div align="center">
+    <h1>Pracownicy</h1>
+
+    <a href="/new_pracownik">Dodaj pracownika</a>
+    <br/><br/>
+    <table border="1" cellpadding="10">
+
+        <thead>
+        <tr>
+            <th>ID pracownika</th>
+            <th>Imię</th>
+            <th>Nazwisko</th>
+            <th>PESEL</th>
+            <th>Data zatrudnienia</th>
+            <th>Nr konta</th>
+            <th>Email</th>
+            <th>Nr telefonu</th>
+            <th>Płeć</th>
+            <th>ID armatora</th>
+            <th>ID adresu</th>
+            <th>Operacja</th>
+
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="pracownik : ${listPracownik}">
+            <td th:text="${pracownik.id_pracownika}">ID pracownika</td>
+            <td th:text="${pracownik.imie}">Imię</td>
+            <td th:text="${pracownik.nazwisko}">Nazwisko</td>
+            <td th:text="${pracownik.pesel}">PESEL</td>
+            <td th:text="${pracownik.data_zatrudnienia}">Data zatrudnienia</td>
+            <td th:text="${pracownik.nr_konta}">Nr konta</td>
+            <td th:text="${pracownik.email}">Email</td>
+            <td th:text="${pracownik.nr_telefonu}">Nr telefonu</td>
+            <td th:text="${pracownik.plec}">Płeć</td>
+            <td th:text="${pracownik.nr_adresu}">ID adresu</td>
+            <td th:text="${pracownik.nr_armatora}">ID armatora</td>
+            <td>
+                <a th:href="@{'/edit_pracownik/' + ${pracownik.id_pracownika}}">Edit</a>
+                <a th:href="@{'/delete_pracownik/' + ${pracownik.id_pracownika}}">Delete</a>
+
+            </td>
+        </tr>
+        </tbody>
+
+    </table>
+
+</div>
+<!--------------------------------------------------Tabelka wynagrodzenia------------------------------------->
+<div align="center">
+    <h1>Wynagrodzenia</h1>
+
+    <a href="/new_wynagrodzenie">Dodaj wynagrodzenie</a>
+    <br/><br/>
+    <table border="1" cellpadding="10">
+
+        <thead>
+        <tr>
+            <th>ID wynagrodzenia</th>
+            <th>Data</th>
+            <th>Kwota</th>
+            <th>Premia</th>
+            <th>ID pracownika</th>
+            <th>Operacja</th>
+
+
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="wynagrodzenie : ${listWynagrodzenie}">
+            <td th:text="${wynagrodzenie.id_wynagrodzenia}">ID wynagrodzenia</td>
+            <td th:text="${wynagrodzenie.data}">Data</td>
+            <td th:text="${wynagrodzenie.kwota}">Kwota</td>
+            <td th:text="${wynagrodzenie.premia}">Premia</td>
+            <td th:text="${wynagrodzenie.id_pracownika}">ID pracownika</td>
+
+            <td>
+                <a th:href="@{'/edit_wynagrodzenie/' + ${wynagrodzenie.id_wynagrodzenia}}">Edit</a>
+                <a th:href="@{'/delete_wynagrodzenie/' + ${wynagrodzenie.id_wynagrodzenia}}">Delete</a>
+
+            </td>
+        </tr>
+        </tbody>
+
+    </table>
+
+</div>
+
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/script.js}"></script>
+
+</body>
+</html>

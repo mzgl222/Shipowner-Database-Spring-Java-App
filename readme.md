@@ -7,21 +7,22 @@
 
 
 
-# Baza danych i aplikacja sterująca "Armator"
+# Baza danych i aplikacja sterująca "Armator" / Database and integrated Spring app for a shipping enterprise
 
-Implementacja relacyjnej bazy danych do obsługi przedsiębiorstwa armatorskiego oraz zintegrowanej aplikacji do obsługi bazy w technologii Java Spring.
+Implementacja relacyjnej bazy danych do obsługi przedsiębiorstwa armatorskiego oraz zintegrowanej aplikacji do obsługi bazy w technologii Java Spring. /
+Implementation of a relational database for the management of a shipping company and an integrated application to handle the database in Java Spring technology.
 
-## Technologiess
-Użyte technologie:
+## Technologie
+Użyte technologie / Used technologies:
  * Java, JavaScript, HTML & CSS
  * Spring Framework, Tomcat Server, Maven
 
-## Baza danych
-Poniżej znajduje się model logiczny bazy danych zamodelowany z użyciem narzędzia Toad Data Modeler, na podstawie którego wygenerowany został kod SQL tworzący faktyczny projekt.
+## Baza danychm / Database
+Poniżej znajduje się model logiczny bazy danych zamodelowany z użyciem narzędzia Toad Data Modeler, na podstawie którego wygenerowany został kod SQL tworzący faktyczny projekt. / Below is the logical model of the database modeled using Toad Data Modeler, based on which the SQL code creating the actual project was generated.
 <img src="zdj\Logiczny.png"/>
 
-## Wygląd aplikacji
-Poniższe zrzuty ekranu przedstawiają zarówno szeroką jak i wąską perspektywę użycia aplikacji.
+## Wygląd aplikacji / App view
+Poniższe zrzuty ekranu przedstawiają zarówno szeroką jak i wąską perspektywę użycia aplikacji. / The screenshots below show both a broad and narrow perspective of the application's usage.
 
 <img src="zdj\mainpage.png"/>
 <img src="zdj\LOGINBEZPRZESUWANIA.png"/>
